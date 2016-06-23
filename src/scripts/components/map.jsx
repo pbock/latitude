@@ -24,7 +24,7 @@ class LatitudeMap extends React.Component {
 				north={continent.north}
 				south={continent.south}
 				name={continent.name}
-				align={continent.name === 'South America' ? 'right' : 'left'}
+				align={continent.labelAlign}
 			>
 			{cityMarkers}
 			</Continent>
