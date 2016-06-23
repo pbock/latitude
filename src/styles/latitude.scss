@@ -1,0 +1,99 @@
+$line-color: #ccc;
+
+body {
+	font: 1em/1.4 "Fira Sans", sans-serif;
+}
+
+.map {
+	@import "partials/reset";
+	position: relative;
+
+	width: 100%;
+	height: 80vh;
+
+	font-size: 14px;
+}
+.map-container {
+	position: absolute;
+	top: 0;
+	left: 3em;
+	box-sizing: border-box;
+
+	width: calc(100% - 3em);
+	height: 100%;
+}
+.axis-lines {
+}
+.axis-line {
+	position: absolute;
+
+	width: 100%;
+	border-top: 1px solid $line-color;
+
+	&.mod-minor {
+		border-top-color: rgba($line-color, .5);
+		.axis-line-label {
+			display: none;
+		}
+	}
+	&.mod-equator {
+		border-top-width: 2px;
+	}
+}
+.axis-line-label {
+	display: block;
+
+	margin-left: -3em;
+	margin-top: -.6em;
+	width: 2.6em;
+	text-align: right;
+}
+.continent {
+	position: absolute;
+	background-color: #ccc;
+	mix-blend-mode: multiply;
+
+	&-cities {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	&-name {
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		height: 0;
+		width: 10em;
+		transform-origin: left top;
+		transform: rotate(90deg);
+		white-space: nowrap;
+
+		&.mod-right {
+			top: auto;
+			bottom: 10em;
+
+			// transform-origin: left bottom;
+			text-align: right;
+		}
+	}
+}
+.city-marker {
+	position: absolute;
+
+	width: 100%;
+	border-top: 1px solid #000;
+
+	&-label {
+		position: absolute;
+		display: block;
+		top: -.7em;
+		padding: 0 .5em;
+
+		&-text {
+			background-color: #ccc;
+			box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
+		}
+	}
+}
