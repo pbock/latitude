@@ -96,6 +96,27 @@ body {
 			box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
 		}
 	}
+
+	&-remove-button {
+		display: none;
+
+		border: none;
+		margin-left: .2em;
+		font-size: 1.2em;
+		width: .8em;
+		height: .8em;
+		line-height: .8em;
+		padding: 0;
+
+		cursor: pointer;
+
+		&:hover {
+			background-color: #bbb;
+		}
+	}
+	&:hover .city-marker-remove-button {
+		display: inline-block;
+	}
 }
 .controls {
 	position: relative;
