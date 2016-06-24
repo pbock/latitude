@@ -6,6 +6,8 @@ import Autocomplete from 'react-autocomplete';
 import { addVisibleCity } from '../reducers/visible-cities';
 import { connect } from 'react-redux';
 
+// Ugly, hacky workaround for 'React.findDOMNode is not a function' TypeError
+React.findDOMNode = React.findDOMNode || (el => el); // eslint-disable-line
 
 function AutocompleteRow(city, isHighlighted) {
 	const className = 'autocomplete-row' + (isHighlighted ? ' is-highlighted' : '');
