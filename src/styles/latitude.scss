@@ -83,8 +83,8 @@ body {
 %label {
 	position: absolute;
 	display: block;
-	top: -.7em;
 	padding: 0 .5em;
+	transform: translateY(-.7em);
 }
 %label-text {
 	background-color: #ccc;

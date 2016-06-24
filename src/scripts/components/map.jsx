@@ -32,9 +32,9 @@ class LatitudeMap extends React.Component {
 			.reduce((prev, cur) => Math.max(prev, cur), 0);
 		const continents = this.props.continentsWithCities.map(continent => {
 			const cities = continent.cities || [];
-			const cityMarkers = cities.map(({ name, latitude }) => {
+			const cityMarkers = cities.map(({ id, name, latitude, sizeRank }) => {
 				const top = (latitude - continent.north) / (continent.south - continent.north);
-				return <CityMarker key={name} name={name} latitude={latitude} top={top} />
+				return <CityMarker key={id} id={id} sizeRank={sizeRank} name={name} latitude={latitude} top={top} />
 			})
 			return <Continent
 				key={continent.name}

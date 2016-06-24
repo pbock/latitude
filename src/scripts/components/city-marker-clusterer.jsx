@@ -5,14 +5,16 @@ import React, { PropTypes } from 'react';
 class CityMarkerCluster extends React.Component {
 	render() {
 		const { children } = this.props;
+		const largest = children.map(c => c.props).reduce((previous, current) => previous && previous.sizeRank < current.sizeRank ? previous : current)
+		const averageTop = children.reduce((total, current) => total + current.props.top, 0) / children.length;
 		const labelStyle = {
-			top: children[0].props.top * 100 + '%',
+			top: averageTop * 100 + '%',
 		}
 		return <div className="city-marker-cluster">
 			{children}
 			<span className="city-marker-cluster-label" style={labelStyle}>
 				<span className="city-marker-cluster-label-text">
-					{`${children[0].props.name} +${children.length - 1}`}
+					{`${largest.name} +${children.length - 1}`}
 				</span>
 			</span>
 		</div>
@@ -49,7 +51,7 @@ class CityMarkerClusterer extends React.Component {
 
 		clustered = clustered.map(el => {
 			if (Array.isArray(el)) {
-				const key = el.map(e => e.props.name).join('+');
+				const key = el.map(e => e.props.id).join('+');
 				return <CityMarkerCluster key={key}>{el}</CityMarkerCluster>;
 			}
 			return el;

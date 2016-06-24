@@ -14,7 +14,7 @@ class CityMarker extends React.Component {
 	}
 
 	handleDeleteButtonClick() {
-		this.props.onDeleteButtonClick(this.props.name);
+		this.props.onDeleteButtonClick(this.props.id);
 	}
 
 	render () {
@@ -31,6 +31,7 @@ class CityMarker extends React.Component {
 	}
 }
 CityMarker.propTypes = {
+	id: PropTypes.number.isRequired,
 	name: PropTypes.string,
 	latitude: PropTypes.number,
 	top: PropTypes.number,

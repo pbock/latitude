@@ -10,6 +10,7 @@ import App from './components/app';
 // Reducers
 import latitudeApp from './reducers';
 import { addCities } from './reducers/cities';
+import { addVisibleCity } from './reducers/visible-cities';
 
 import Cities from './data/cities';
 

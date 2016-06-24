@@ -28,20 +28,15 @@ class Controls extends React.Component {
 	}
 	render() {
 		const { cities } = this.props;
-
-		function shouldItemRender(item, value) {
-			const shouldRender = value.length && item.name.toLowerCase().indexOf(value.toLowerCase()) === 0;
-			return shouldRender;
-		}
+		const { value } = this.state;
 
 		const autocomplete = <Autocomplete
-			items={cities}
+			items={value.length ? cities.filter(c => c.name.toLowerCase().indexOf(value.toLowerCase()) === 0).slice(0, 20) : []}
 			value={this.state.value}
 			onChange={(ev, value) => this.setState({ value: value })}
 			onSelect={this.handleSelect}
 			getItemValue={city => city.name}
 			renderItem={AutocompleteRow}
-			shouldItemRender={shouldItemRender}
 		/>
 
 		return <div className="controls">{autocomplete}</div>
