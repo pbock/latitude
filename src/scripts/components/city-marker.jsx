@@ -34,7 +34,7 @@ CityMarker.propTypes = {
 	name: PropTypes.string,
 	latitude: PropTypes.number,
 	top: PropTypes.string,
-	onDeleteButtonClick: PropTypes.function,
+	onDeleteButtonClick: PropTypes.func,
 }
 CityMarker.defaultProps = {
 	onDeleteButtonClick: () => {},

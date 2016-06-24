@@ -48,7 +48,7 @@ class Controls extends React.Component {
 	}
 }
 Controls.propTypes = {
-	onSelectCity: PropTypes.function,
+	onSelectCity: PropTypes.func,
 	cities: PropTypes.array.isRequired,
 }
 Controls.defaultProps = {
