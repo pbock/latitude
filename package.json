@@ -24,6 +24,7 @@
     "css-loader": "^0.23.1",
     "node-sass": "^3.8.0",
     "react": "^15.1.0",
+    "react-autocomplete": "^1.0.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",

@@ -97,3 +97,20 @@ body {
 		}
 	}
 }
+.controls {
+	position: relative;
+	z-index: 2;
+}
+.autocomplete-row {
+	padding: .2em;
+
+	&.is-highlighted {
+		background-color: rgba(#09c, .5);
+	}
+	&-secondary {
+		color: rgba(#000, .4);
+	}
+	p {
+		margin: 0;
+	}
+}
