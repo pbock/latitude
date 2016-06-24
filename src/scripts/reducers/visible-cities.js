@@ -13,6 +13,7 @@ export function removeVisibleCity(name) {
 export default function visibleCities(state = [], action) {
 	switch (action.type) {
 		case ADD_VISIBLE_CITY:
+			if (state.indexOf(action.name) !== -1) return state;
 			return [ ...state, action.name ];
 		case REMOVE_VISIBLE_CITY:
 			return state.filter(name => name !== action.name);
