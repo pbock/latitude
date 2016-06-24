@@ -20,7 +20,7 @@ class CityMarker extends React.Component {
 	render () {
 		const { latitude, top, name } = this.props;
 		const style = {
-			top: top || project(latitude) * 100 + '%',
+			top: top * 100 + '%' || project(latitude) * 100 + '%',
 		}
 		return <div className="city-marker" style={style}>
 			<span className="city-marker-label">
@@ -33,11 +33,13 @@ class CityMarker extends React.Component {
 CityMarker.propTypes = {
 	name: PropTypes.string,
 	latitude: PropTypes.number,
-	top: PropTypes.string,
+	top: PropTypes.number,
 	onDeleteButtonClick: PropTypes.func,
+	showLabel: PropTypes.bool,
 }
 CityMarker.defaultProps = {
 	onDeleteButtonClick: () => {},
+	showLabel: true,
 }
 
 const CityMarkerContainer = connect(

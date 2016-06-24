@@ -5,8 +5,27 @@ import React, { PropTypes } from 'react';
 import AxisLines from './axis-lines';
 import Continent from './continent';
 import CityMarker from './city-marker';
+import CityMarkerClusterer from './city-marker-clusterer';
 
 class LatitudeMap extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = { height: null };
+		this.updateDimensions = this.updateDimensions.bind(this);
+	}
+
+	componentDidMount() {
+		this.updateDimensions();
+	}
+
+	updateDimensions() {
+		requestAnimationFrame(() => {
+			const { height } = this._map.getBoundingClientRect();
+			this.setState({ height });
+		})
+	}
+
 	render () {
 		const { continentsWithCities } = this.props;
 		const maxRight = continentsWithCities.map(c => c.right)
@@ -14,7 +33,7 @@ class LatitudeMap extends React.Component {
 		const continents = this.props.continentsWithCities.map(continent => {
 			const cities = continent.cities || [];
 			const cityMarkers = cities.map(({ name, latitude }) => {
-				const top = (latitude - continent.north) / (continent.south - continent.north) * 100 + '%';
+				const top = (latitude - continent.north) / (continent.south - continent.north);
 				return <CityMarker key={name} name={name} latitude={latitude} top={top} />
 			})
 			return <Continent
@@ -26,12 +45,13 @@ class LatitudeMap extends React.Component {
 				name={continent.name}
 				align={continent.labelAlign}
 			>
-			{cityMarkers}
+				<CityMarkerClusterer threshold={0.2}>{cityMarkers}</CityMarkerClusterer>
 			</Continent>
 		})
-		return <div className="map">
+		return <div className="map" ref={el => this._map = el}>
 			<AxisLines latitudes />
 			<div className="map-body map-container">
+				<p>{ this.state.height }</p>
 				{continents}
 			</div>
 		</div>

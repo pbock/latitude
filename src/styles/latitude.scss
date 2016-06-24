@@ -79,21 +79,44 @@ body {
 		}
 	}
 }
+
+%label {
+	position: absolute;
+	display: block;
+	top: -.7em;
+	padding: 0 .5em;
+}
+%label-text {
+	background-color: #ccc;
+	box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
+}
+
 .city-marker {
 	position: absolute;
 
 	width: 100%;
 	border-top: 1px solid #000;
 
-	&-label {
-		position: absolute;
-		display: block;
-		top: -.7em;
-		padding: 0 .5em;
+	&-cluster {
+		.city-marker {
+			border-top-color: rgba(#000, .3);
+		}
+		&-label {
+			@extend %label;
+			&-text {
+				@extend %label-text;
+			}
+		}
 
+		.city-marker-label {
+			display: none;
+		}
+	}
+
+	&-label {
+		@extend %label;
 		&-text {
-			background-color: #ccc;
-			box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
+			@extend %label-text;
 		}
 	}
 

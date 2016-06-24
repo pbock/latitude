@@ -2,6 +2,8 @@
 
 import React, { PropTypes } from 'react';
 
+import CityMarkerClusterer from './city-marker-clusterer';
+
 import project from '../lib/projection';
 
 class Continent extends React.Component {
@@ -27,7 +29,7 @@ Continent.propTypes = {
 	left: PropTypes.number.isRequired,
 	right: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
-	children: PropTypes.arrayOf(PropTypes.element),
+	children: PropTypes.node,
 	align: PropTypes.oneOf([ 'left', 'right' ]),
 }
 Continent.defaultProps = {

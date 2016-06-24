@@ -28,6 +28,8 @@ const store = createStore(latitudeApp, {
 		'Berlin',
 		'New York City',
 		'Hamburg',
+		'Paris',
+		'Reykjavík',
 	],
 }, window.devToolsExtension && window.devToolsExtension());
 Cities.get().then(c => store.dispatch(addCities(c)));
