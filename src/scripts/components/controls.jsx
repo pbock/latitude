@@ -22,24 +22,22 @@ class Controls extends React.Component {
 		this.state = { value: '' };
 		this.handleSelect = this.handleSelect.bind(this);
 	}
-	handleSelect(value) {
+	handleSelect(value, item) {
 		this.setState({ value: '' });
-		this.props.onSelectCity(value);
+		this.props.onSelectCity(item);
 	}
 	render() {
 		const { cities } = this.props;
 
 		function shouldItemRender(item, value) {
-			// if (renderedCount > 20) return;
 			const shouldRender = value.length && item.name.toLowerCase().indexOf(value.toLowerCase()) === 0;
-			// if (shouldRender) ++renderedCount;
 			return shouldRender;
 		}
 
 		const autocomplete = <Autocomplete
 			items={cities}
 			value={this.state.value}
-			onChange={(ev, value) => this.setState({ value })}
+			onChange={(ev, value) => this.setState({ value: value })}
 			onSelect={this.handleSelect}
 			getItemValue={city => city.name}
 			renderItem={AutocompleteRow}
@@ -59,7 +57,7 @@ Controls.defaultProps = {
 
 const ControlsContainer = connect(
 	state => ({ cities: state.cities }),
-	dispatch => ({ onSelectCity: name => dispatch(addVisibleCity(name)) })
+	dispatch => ({ onSelectCity: city => dispatch(addVisibleCity(city.id)) })
 )(Controls);
 
 export default ControlsContainer;

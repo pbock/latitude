@@ -7,9 +7,10 @@ function get() {
 	return fetch('data/cities.json')
 		.then(r => r.json())
 		.then(cities => cities.map(city => ({
-			name: city[0],
-			latitude: city[1],
-			continent: continents[city[2]],
+			id: city[0],
+			name: city[1],
+			latitude: city[2],
+			continent: continents[city[3]],
 		}) ))
 }
 
