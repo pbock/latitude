@@ -8,7 +8,7 @@ import Controls from './controls';
 
 function mapStateToProps(state) {
 	const { cities } = state;
-	const visibleCities = state.visibleCities.map( name => cities.find(city => city.name === name) );
+	const visibleCities = state.visibleCities.map( name => cities.find(city => city.name === name) ).filter(c => c);
 
 	const continentsWithCities = state.continents.map(continent => {
 		const cities = visibleCities.filter(city => city.continent === continent.name);

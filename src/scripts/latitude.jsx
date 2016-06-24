@@ -24,6 +24,11 @@ const store = createStore(latitudeApp, {
 		{ name: 'Asia', north: 77.7, south: 8.7, left: 2, right: 3 },
 		{ name: 'Oceania', labelAlign: 'right', north: -0.4, south: -47.2, left: 2, right: 3 },
 	],
+	visibleCities: [
+		'Berlin',
+		'New York City',
+		'Hamburg',
+	],
 }, window.devToolsExtension && window.devToolsExtension());
 Cities.get().then(c => store.dispatch(addCities(c)));
 
