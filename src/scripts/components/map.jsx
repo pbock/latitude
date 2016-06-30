@@ -17,6 +17,11 @@ class LatitudeMap extends React.Component {
 
 	componentDidMount() {
 		this.updateDimensions();
+		window.addEventListener('resize', this.updateDimensions);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateDimensions);
 	}
 
 	updateDimensions() {
@@ -36,6 +41,7 @@ class LatitudeMap extends React.Component {
 				const top = (latitude - continent.north) / (continent.south - continent.north);
 				return <CityMarker key={id} id={id} sizeRank={sizeRank} name={name} latitude={latitude} top={top} />
 			})
+			const clusterThreshold = (continent.north - continent.south) / 180 / this.state.height * 300;
 			return <Continent
 				key={continent.name}
 				left={continent.left / maxRight}
@@ -45,7 +51,7 @@ class LatitudeMap extends React.Component {
 				name={continent.name}
 				align={continent.labelAlign}
 			>
-				<CityMarkerClusterer threshold={0.2}>{cityMarkers}</CityMarkerClusterer>
+				<CityMarkerClusterer threshold={clusterThreshold}>{cityMarkers}</CityMarkerClusterer>
 			</Continent>
 		})
 		return <div className="map" ref={el => this._map = el}>

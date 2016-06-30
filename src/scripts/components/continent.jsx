@@ -2,16 +2,17 @@
 
 import React, { PropTypes } from 'react';
 
-import CityMarkerClusterer from './city-marker-clusterer';
-
 import project from '../lib/projection';
 
 class Continent extends React.Component {
 	render() {
 		const { north, south, left, right, name, align } = this.props;
+		const top = project(north);
+		const bottom = project(south);
+		const height = bottom - top;
 		const style = {
-			top: project(north) * 100 + '%',
-			height: (project(south) - project(north)) * 100 + '%',
+			top: top * 100 + '%',
+			height: height * 100 + '%',
 			left: `calc(${left * 100}% + 1.5em)`,
 			width: `calc(${(right - left) * 100}% - 2em)`,
 		}
