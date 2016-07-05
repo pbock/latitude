@@ -66,10 +66,15 @@ class Controls extends React.Component {
 			inputProps={{ placeholder: 'e.g. Berlin', className: 'search-field', type: 'search' }}
 		/>
 
+		let clearAll;
+		if(this.props.clearAllIsVisible) {
+			clearAll = <button className="controls-button" onClick={this.props.onClearVisibleCities}>Clear All</button>
+		}
+
 		return <div className="controls">
 			<LabeledField label="Add a City">{autocomplete}</LabeledField>
 			{' '}
-			<button className="controls-button" onClick={this.props.onClearVisibleCities}>Clear All</button>
+			{clearAll}
 		</div>
 	}
 }
@@ -77,14 +82,16 @@ Controls.propTypes = {
 	onSelectCity: PropTypes.func,
 	onClearVisibleCities: PropTypes.func,
 	cities: PropTypes.array.isRequired,
+	clearAllIsVisible: PropTypes.bool,
 }
 Controls.defaultProps = {
 	onSelectCity: () => {},
 	onClearVisibleCities: () => {},
+	clearAllIsVisible: true,
 }
 
 const ControlsContainer = connect(
-	state => ({ cities: state.cities }),
+	state => ({ cities: state.cities, clearAllIsVisible: !!state.visibleCities.length }),
 	dispatch => ({
 		onSelectCity: city => dispatch(addVisibleCity(city.id)),
 		onClearVisibleCities: () => dispatch(clearVisibleCities()),
