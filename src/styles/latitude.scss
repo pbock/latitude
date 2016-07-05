@@ -12,6 +12,13 @@ body {
 	height: 80vh;
 
 	font-size: 14px;
+
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 .map-container {
 	position: absolute;
@@ -90,9 +97,25 @@ body {
 	background-color: #ccc;
 	box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
 }
+%inline-button {
+	border: none;
+	margin-left: .2em;
+	font-size: 1.2em;
+	width: .8em;
+	height: .8em;
+	line-height: .8em;
+	padding: 0;
+
+	cursor: pointer;
+
+	&:hover {
+		background-color: #bbb;
+	}
+}
 
 .city-marker {
 	position: absolute;
+	z-index: 0;
 
 	width: 100%;
 	border-top: 1px solid #000;
@@ -103,18 +126,20 @@ body {
 		}
 		&-label {
 			@extend %label;
+			z-index: 1;
 			&-text {
 				@extend %label-text;
 			}
 		}
 
 		.city-marker-label {
-			display: none;
+			position: static;
 		}
 	}
 
 	&-label {
 		@extend %label;
+
 		&-text {
 			@extend %label-text;
 		}
@@ -122,23 +147,45 @@ body {
 
 	&-remove-button {
 		display: none;
+		@extend %inline-button;
+	}
+	&-label:hover .city-marker-remove-button {
+		display: inline-block;
+	}
+}
+.dropdown {
+	position: relative;
 
-		border: none;
-		margin-left: .2em;
-		font-size: 1.2em;
-		width: .8em;
-		height: .8em;
-		line-height: .8em;
-		padding: 0;
+	&-expander {
+		position: absolute;
 
-		cursor: pointer;
+		left: -.5em;
+		top: .5em;
 
-		&:hover {
-			background-color: #bbb;
+		&.is-contracted {
+			pointer-events: none;
+		}
+		&.is-expanded {
+			pointer-events: all;
 		}
 	}
-	&:hover .city-marker-remove-button {
-		display: inline-block;
+	ul {
+		margin: 0;
+		list-style: none;
+	}
+	li {
+		margin: 0;
+	}
+	&-item {
+		transition: transform .2s ease, opacity .2s ease;
+		&.is-contracted {
+			transform: translateY(.5em);
+			opacity: 0;
+		}
+		&.is-expanded {
+			transform: none;
+			opacity: 1;
+		}
 	}
 }
 .controls {

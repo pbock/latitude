@@ -18,16 +18,11 @@ class CityMarker extends React.Component {
 	}
 
 	render () {
-		const { latitude, top, name } = this.props;
-		const style = {
-			top: top * 100 + '%' || project(latitude) * 100 + '%',
-		}
-		return <div className="city-marker" style={style}>
-			<span className="city-marker-label">
-				<span className="city-marker-label-text">{name}</span>
-				<button className="city-marker-label-text city-marker-remove-button" onClick={this.handleDeleteButtonClick}>×</button>
-			</span>
-		</div>
+		const { name } = this.props;
+		return <span className="city-marker-label">
+			<span className="city-marker-label-text">{name}</span>
+			<button className="city-marker-label-text city-marker-remove-button" onClick={this.handleDeleteButtonClick}>×</button>
+		</span>
 	}
 }
 CityMarker.propTypes = {
