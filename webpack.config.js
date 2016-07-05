@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/scripts/latitude.jsx',
+  entry: [ 'whatwg-fetch', './src/scripts/latitude.jsx' ],
   output: {
     path: './dist/scripts/',
     publicPath: 'scripts/',
