@@ -155,6 +155,10 @@ body {
 		z-index: 1;
 		width: 100%;
 
+		&:hover {
+			z-index: 2;
+		}
+
 		&-text {
 			@extend %label-text;
 		}
