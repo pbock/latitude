@@ -1,5 +1,7 @@
 $axis-line-color: #ccc;
 $city-color: #000;
+$continent-color: rgba(#000, .1);
+$left-padding: 5em;
 
 body {
 	font: 1em/1.4 "Fira Sans", sans-serif;
@@ -24,10 +26,10 @@ body {
 .map-container {
 	position: absolute;
 	top: 0;
-	left: 3em;
+	left: $left-padding;
 	box-sizing: border-box;
 
-	width: calc(100% - 3em);
+	width: calc(100% - #{$left-padding});
 	height: 100%;
 }
 .axis-lines {
@@ -51,14 +53,15 @@ body {
 .axis-line-label {
 	display: block;
 
-	margin-left: -3em;
+	margin-left: -$left-padding;
 	margin-top: -.6em;
-	width: 2.6em;
+	width: $left-padding - .4;
 	text-align: right;
 }
 .continent {
 	position: absolute;
-	background-color: rgba(#000, .2);
+	background-color: $continent-color;
+	border-top: 3px solid rgba(#fff, .8);
 
 	&-cities {
 		width: 100%;
@@ -68,20 +71,25 @@ body {
 
 	&-name {
 		position: absolute;
-		left: 0;
-		top: 0;
+		left: -1.5em;
+		bottom: 0;
 
 		height: 0;
 		width: 10em;
 		transform-origin: left top;
-		transform: rotate(90deg);
+		transform: rotate(-90deg);
 		white-space: nowrap;
 
-		&.mod-right {
-			top: auto;
-			bottom: 10em;
+		text-transform: uppercase;
+		font-size: .9em !important;
+		font-weight: 600 !important;
+		letter-spacing: .08em;
+		opacity: .5;
 
-			// transform-origin: left bottom;
+		&.mod-right {
+			bottom: auto;
+			top: 10em;
+
 			text-align: right;
 		}
 	}
@@ -140,6 +148,7 @@ body {
 .city-marker-cluster {
 	.city-marker {
 		border-top-color: rgba($city-color, .3);
+		border-top-style: dashed;
 	}
 	&-label {
 		@extend %label;
