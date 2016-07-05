@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import Autocomplete from 'react-autocomplete';
 
-import { addVisibleCity } from '../reducers/visible-cities';
+import { addVisibleCity, clearVisibleCities } from '../reducers/visible-cities';
 import { connect } from 'react-redux';
 
 // Ugly, hacky workaround for 'React.findDOMNode is not a function' TypeError
@@ -68,20 +68,27 @@ class Controls extends React.Component {
 
 		return <div className="controls">
 			<LabeledField label="Add a City">{autocomplete}</LabeledField>
+			{' '}
+			<button className="controls-button" onClick={this.props.onClearVisibleCities}>Clear All</button>
 		</div>
 	}
 }
 Controls.propTypes = {
 	onSelectCity: PropTypes.func,
+	onClearVisibleCities: PropTypes.func,
 	cities: PropTypes.array.isRequired,
 }
 Controls.defaultProps = {
 	onSelectCity: () => {},
+	onClearVisibleCities: () => {},
 }
 
 const ControlsContainer = connect(
 	state => ({ cities: state.cities }),
-	dispatch => ({ onSelectCity: city => dispatch(addVisibleCity(city.id)) })
+	dispatch => ({
+		onSelectCity: city => dispatch(addVisibleCity(city.id)),
+		onClearVisibleCities: () => dispatch(clearVisibleCities()),
+	})
 )(Controls);
 
 export default ControlsContainer;
