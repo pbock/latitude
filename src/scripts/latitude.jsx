@@ -25,13 +25,7 @@ const store = createStore(latitudeApp, {
 		{ name: 'Asia', north: 77.7, south: 8.7, left: 2, right: 3 },
 		{ name: 'Oceania', labelAlign: 'right', north: -0.4, south: -47.2, left: 2, right: 3 },
 	],
-	visibleCities: [
-		82, // Berlin
-		19, // NYC
-		170, // Hamburg
-		139, // Paris
-		3610, // Reykjavík
-	],
+	visibleCities: [ 19, 139, 3610, 916, 82, 85, 24, 80, 3, 61, 636, 46, 4, 18, 654, 0, 2, 54, 49, 1, 39,	],
 }, window.devToolsExtension && window.devToolsExtension());
 Cities.get().then(c => store.dispatch(addCities(c)));
 

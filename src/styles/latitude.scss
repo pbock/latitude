@@ -1,4 +1,5 @@
-$line-color: #ccc;
+$axis-line-color: #ccc;
+$city-color: #000;
 
 body {
 	font: 1em/1.4 "Fira Sans", sans-serif;
@@ -35,10 +36,10 @@ body {
 	position: absolute;
 
 	width: 100%;
-	border-top: 1px solid $line-color;
+	border-top: 1px solid $axis-line-color;
 
 	&.mod-minor {
-		border-top-color: rgba($line-color, .5);
+		border-top-color: rgba($axis-line-color, .5);
 		.axis-line-label {
 			display: none;
 		}
@@ -57,13 +58,12 @@ body {
 }
 .continent {
 	position: absolute;
-	background-color: #ccc;
-	mix-blend-mode: multiply;
+	background-color: rgba(#000, .2);
 
 	&-cities {
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
+		mix-blend-mode: multiply;
 	}
 
 	&-name {
@@ -94,8 +94,8 @@ body {
 	transform: translateY(-.7em);
 }
 %label-text {
-	background-color: #ccc;
-	box-shadow: .2em 0 0 #ccc, -.2em 0 0 #ccc;
+	background-color: #fff;
+	box-shadow: .2em 0 0 #fff, -.2em 0 0 #fff;
 }
 %inline-button {
 	border: none;
@@ -118,7 +118,8 @@ body {
 	z-index: 0;
 
 	width: 100%;
-	border-top: 1px solid #000;
+	color: $city-color;
+	border-top: 1px solid $city-color;
 
 	&-label {
 		@extend %label;
@@ -138,7 +139,7 @@ body {
 }
 .city-marker-cluster {
 	.city-marker {
-		border-top-color: rgba(#000, .3);
+		border-top-color: rgba($city-color, .3);
 	}
 	&-label {
 		@extend %label;
@@ -181,7 +182,7 @@ body {
 		margin: 0;
 	}
 	&-item {
-		background-color: #ccc;
+		background-color: rgba(#fff, .8);
 		width: 100%;
 		transition: transform .2s ease, opacity .2s ease;
 		&.is-contracted {

@@ -41,7 +41,13 @@ class LatitudeMap extends React.Component {
 				const top = (latitude - continent.north) / (continent.south - continent.north);
 				return <CityMarker key={id} id={id} sizeRank={sizeRank} name={name} latitude={latitude} top={top} />
 			})
-			const clusterThreshold = (continent.north - continent.south) / 180 / this.state.height * 300;
+			// continent height; a float between 0 and 1
+			const continentHeight = (continent.north - continent.south) / 180;
+			// height that the continent will have in pixels
+			const pixelHeight = continentHeight * this.state.height;
+			// The threshold at which cities will be clustered together
+			// (in multiples of the continent's height – sorry …)
+			const clusterThreshold = 14 / pixelHeight;
 			return <Continent
 				key={continent.name}
 				left={continent.left / maxRight}

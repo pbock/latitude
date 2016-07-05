@@ -64,20 +64,24 @@ class CityMarkerClusterer extends React.Component {
 		const { children, threshold } = this.props;
 		children.sort((a, b) => a.props.top - b.props.top);
 		let clustered = [];
+		let distanceSinceClusterStarted = 0;
 		let previousEl;
 		for (let i = 0; i < children.length; i++) {
 			const el = children[i];
 			if (previousEl) {
 				const distance = el.props.top - previousEl.props.top;
-				if (distance < threshold) {
+				if (distanceSinceClusterStarted + distance < threshold) {
 					let lastElement = clustered.pop();
 					if (Array.isArray(lastElement)) lastElement.push(el);
 					else lastElement = [ lastElement, el ];
+					distanceSinceClusterStarted += distance;
 					clustered.push(lastElement);
 				} else {
+					distanceSinceClusterStarted = 0;
 					clustered.push(el);
 				}
 			} else {
+				distanceSinceClusterStarted = 0;
 				clustered.push(el);
 			}
 			previousEl = el;
