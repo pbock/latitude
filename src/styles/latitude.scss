@@ -120,23 +120,6 @@ body {
 	width: 100%;
 	border-top: 1px solid #000;
 
-	&-cluster {
-		.city-marker {
-			border-top-color: rgba(#000, .3);
-		}
-		&-label {
-			@extend %label;
-			z-index: 1;
-			&-text {
-				@extend %label-text;
-			}
-		}
-
-		.city-marker-label {
-			position: static;
-		}
-	}
-
 	&-label {
 		@extend %label;
 
@@ -153,8 +136,28 @@ body {
 		display: inline-block;
 	}
 }
+.city-marker-cluster {
+	.city-marker {
+		border-top-color: rgba(#000, .3);
+	}
+	&-label {
+		@extend %label;
+		z-index: 1;
+		width: 100%;
+
+		&-text {
+			@extend %label-text;
+		}
+	}
+
+	.city-marker-label {
+		position: static;
+	}
+}
+
 .dropdown {
 	position: relative;
+	width: 100%;
 
 	&-expander {
 		position: absolute;
@@ -171,12 +174,15 @@ body {
 	}
 	ul {
 		margin: 0;
+		width: 100%;
 		list-style: none;
 	}
 	li {
 		margin: 0;
 	}
 	&-item {
+		background-color: #ccc;
+		width: 100%;
 		transition: transform .2s ease, opacity .2s ease;
 		&.is-contracted {
 			transform: translateY(.5em);

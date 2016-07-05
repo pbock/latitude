@@ -49,9 +49,7 @@ class CityMarkerCluster extends React.Component {
 		return <div className="city-marker-cluster">
 			{lines}
 			<div className="city-marker-cluster-label" style={labelStyle}>
-				<div className="city-marker-cluster-label-text">
-					<CityMarkerClusterDropdown>{children}</CityMarkerClusterDropdown>
-				</div>
+				<CityMarkerClusterDropdown>{children}</CityMarkerClusterDropdown>
 			</div>
 		</div>
 	}
