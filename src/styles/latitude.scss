@@ -3,6 +3,8 @@ $city-color: #000;
 $continent-color: rgba(#000, .1);
 $left-padding: 5em;
 
+@import url(https://code.cdn.mozilla.net/fonts/fira.css);
+
 body {
 	font: 1em/1.4 "Fira Sans", sans-serif;
 }
@@ -279,4 +281,13 @@ body {
 	p {
 		margin: 0;
 	}
+}
+
+footer {
+	margin-top: 2em;
+	padding: 1em 0;
+	opacity: .4;
+}
+.source-link {
+	color: inherit;
 }
