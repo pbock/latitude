@@ -191,6 +191,36 @@ body {
 .controls {
 	position: relative;
 	z-index: 2;
+
+	margin-bottom: .5em;
+}
+.labeled-field {
+	display: inline-block;
+
+	border: 1px solid #ccc;
+
+	&-label {
+		display: inline-block;
+		padding: .25em;
+	}
+	&-field {
+
+	}
+	input {
+		border: none;
+		padding: .25em;
+		width: 15em;
+
+		font: inherit;
+
+		&:focus {
+			outline: none;
+		}
+	}
+	&.has-focus {
+		border-color: #09c;
+		box-shadow: 0 0 6px rgba(#09c, .3);
+	}
 }
 .autocomplete-row {
 	padding: .2em;

@@ -16,6 +16,32 @@ function AutocompleteRow(city, isHighlighted) {
 	</div>
 }
 
+class LabeledField extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleFocus = this.handleFocus.bind(this);
+		this.handleBlur = this.handleBlur.bind(this);
+		this.state = { hasFocus: false };
+	}
+	handleFocus() {
+		this.setState({ hasFocus: true });
+	}
+	handleBlur() {
+		this.setState({ hasFocus: false });
+	}
+	render() {
+		const className = 'labeled-field ' + (this.state.hasFocus ? 'has-focus' : '');
+		return <label className={className} onFocus={this.handleFocus} onBlur={this.handleBlur}>
+			<span className="labeled-field-label">{this.props.label}</span>
+			<span className="labeled-field-field">{this.props.children}</span>
+		</label>
+	}
+}
+LabeledField.propTypes = {
+	children: PropTypes.node.isRequired,
+	label: PropTypes.string.isRequired,
+}
+
 class Controls extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,9 +63,12 @@ class Controls extends React.Component {
 			onSelect={this.handleSelect}
 			getItemValue={city => city.name}
 			renderItem={AutocompleteRow}
+			inputProps={{ placeholder: 'e.g. Berlin', className: 'search-field', type: 'search' }}
 		/>
 
-		return <div className="controls">{autocomplete}</div>
+		return <div className="controls">
+			<LabeledField label="Add a City">{autocomplete}</LabeledField>
+		</div>
 	}
 }
 Controls.propTypes = {

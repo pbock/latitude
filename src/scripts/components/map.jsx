@@ -57,7 +57,6 @@ class LatitudeMap extends React.Component {
 		return <div className="map" ref={el => this._map = el}>
 			<AxisLines latitudes />
 			<div className="map-body map-container">
-				<p>{ this.state.height }</p>
 				{continents}
 			</div>
 		</div>
